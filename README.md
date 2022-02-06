@@ -9,6 +9,8 @@
  * SQL
 
  ## Website
+https://tiffsobczak.github.io/employee-tracking-system/
+
 
  ## Video 
-
+https://youtu.be/N7uv91dO3AY
