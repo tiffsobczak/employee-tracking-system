@@ -1,6 +1,8 @@
+//Required imports to run
 const mysql = require('mysql2/promise');
 const inquirer= require ('inquirer');
 
+//action options
 const questions =[
     {
     type: 'list',
@@ -27,6 +29,7 @@ const main = async() => {
         password: '',
         database: 'Employee Tracker'
     });
+    //options for actions
     const answers=await inquirer.prompt (questions)
     if (answers.action === 'view all departments') {
         const [departmentRows] = await connection.query ('SELECT * FROM department') 
@@ -42,6 +45,7 @@ const main = async() => {
             type: 'input',
             name: 'name',
             message: 'What is the name of the department?',
+            //requires valid input
             validate: input => required("name", input)
         }, {
             type: 'input',
@@ -49,6 +53,7 @@ const main = async() => {
             message: 'What is the description of the department?',
             validate: input => required("description", input)
         }])
+        //aligning input with columns on table to insert data
         await connection.execute ("INSERT INTO department (name, description) VALUES (?,?)", [deptAnswers.name, deptAnswers.description])
         console.log("Department added!")
     } else if (answers.action === 'add a role') {
